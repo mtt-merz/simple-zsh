@@ -1,6 +1,6 @@
 # Set up the prompt
 
-PROMPT='%K{green}%2~%k %# '
+PROMPT='%F{cyan}%~%f %# '
 
 # Autoload zsh's `add-zsh-hook` and `vcs_info` functions
 # (-U autoload w/o substition, -z use zsh style)
@@ -14,7 +14,7 @@ add-zsh-hook precmd vcs_info
 
 # Style the vcs_info message
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git*' formats '%b%u%c'
+zstyle ':vcs_info:git*' formats '⎇  %b%u%c'
 # Format when the repo is in an action (merge, rebase, etc)
 zstyle ':vcs_info:git*' actionformats '%F{14}⏱ %*%f'
 zstyle ':vcs_info:git*' unstagedstr '*'
@@ -24,7 +24,7 @@ zstyle ':vcs_info:git*' stagedstr '+'
 zstyle ':vcs_info:*:*' check-for-changes true
 
 # Set the right prompt to the vcs_info message
-RPROMPT='%F{8}⎇  $vcs_info_msg_0_%f'
+RPROMPT='%F{8}$vcs_info_msg_0_%f'
 
 setopt histignorealldups sharehistory
 
