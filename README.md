@@ -2,6 +2,8 @@
 
 This repo maintains a zsh configuration that customizes the shell's behavior and appearance. It sets up the prompt, enables version control system (VCS) information, configures history and completion, and defines aliases.
 
+![image](assets/screenshot.png)
+
 Here's a brief breakdown:
 
 1. **Prompt setup**: Sets the prompt to display the current directory, and enables prompt substitution to display VCS information.
