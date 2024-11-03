@@ -55,13 +55,13 @@ setopt HIST_VERIFY              # Show command before executing from history
 setopt SHARE_HISTORY            # Share history between sessions
 
 # Basic autosuggestions (requires zsh-autosuggestions package)
-if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 # Basic syntax highlighting (requires zsh-syntax-highlighting package)
-if [ -f /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 # Useful aliases
@@ -69,5 +69,5 @@ alias ls='ls --color=auto'
 alias ll='ls -lah'
 alias grep='grep --color=auto'
 
-# Prompt customization
+# Prompt customisation
 PROMPT='%F{cyan}%~%f %# '
