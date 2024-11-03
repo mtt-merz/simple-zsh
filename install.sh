@@ -17,7 +17,7 @@ echo ".zshrc has been downloaded and set up successfully."
 
 # Source the new .zshrc
 echo "Sourcing the new .zshrc"
-source "$HOME/.zshrc"else
+source "$HOME/.zshrc"
 
 # Download and source zsh-autosuggestions
 if [ ! -d ~/.zsh/zsh-autosuggestions ]; then
