@@ -64,10 +64,5 @@ if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
-# Useful aliases
-alias ls='ls --color=auto'
-alias ll='ls -lah'
-alias grep='grep --color=auto'
-
 # Prompt customisation
 PROMPT='%F{cyan}%~%f %# '
