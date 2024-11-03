@@ -1,66 +1,73 @@
-# Set up the prompt
+# Basic zsh configuration
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
 
-PROMPT='%F{cyan}%~%f %# '
-
-# Autoload zsh's `add-zsh-hook` and `vcs_info` functions
-# (-U autoload w/o substition, -z use zsh style)
+# Load version control information
 autoload -Uz add-zsh-hook vcs_info
-
-# Set prompt substitution so we can use the vcs_info_message variable
 setopt prompt_subst
-
-# Run the `vcs_info` hook to grab git info before displaying the prompt
 add-zsh-hook precmd vcs_info
 
-# Style the vcs_info message
+# Format the vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats '⎇ %b %m%u%c'
 zstyle ':vcs_info:*' enable git
-zstyle ':vcs_info:git*' formats '⎇  %b%u%c'
-# Format when the repo is in an action (merge, rebase, etc)
-zstyle ':vcs_info:git*' actionformats '%F{14}⏱ %*%f'
-zstyle ':vcs_info:git*' unstagedstr '*'
-zstyle ':vcs_info:git*' stagedstr '+'
-# This enables %u and %c (unstaged/staged changes) to work,
-# but can be slow on large repos
-zstyle ':vcs_info:*:*' check-for-changes true
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' stagedstr '+'
 
-# Set the right prompt to the vcs_info message
 RPROMPT='%F{8}$vcs_info_msg_0_%f'
 
-setopt histignorealldups sharehistory
-
-# Use emacs keybindings even if our EDITOR is set to vi
-bindkey -e
-
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.zsh_history
-
-# Use modern completion system
+# Basic completion system
 autoload -Uz compinit
 compinit
 
-zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-zstyle ':completion:*' format 'Completing %d'
+# Cache completion for better performance
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# Menu selection for completion
+zstyle ':completion:*' menu select
+
+# Case-insensitive completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Colorful completion menu
+zstyle ':completion:*:*:*:*:descriptions' format '%F{green}-- %d --%f'
+zstyle ':completion:*:*:*:*:corrections' format '%F{yellow}!- %d (errors: %e) -!%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+
+# Group matches and describe groups
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' menu select=long
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
+zstyle ':completion:*:*:-command-:*:*' group-order alias builtins functions commands
 
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+# Better directory stack navigation
+setopt AUTO_PUSHD           # Push directories to stack automatically
+setopt PUSHD_IGNORE_DUPS    # Don't push duplicates
+setopt PUSHD_SILENT         # Don't print directory stack
 
-# Aliases
-alias pn="pnpm"
+# Better history
+setopt EXTENDED_HISTORY         # Write timestamp to history
+setopt HIST_EXPIRE_DUPS_FIRST   # Expire duplicate entries first
+setopt HIST_IGNORE_DUPS         # Don't record duplicates
+setopt HIST_IGNORE_SPACE        # Don't record entries starting with space
+setopt HIST_VERIFY              # Show command before executing from history
+setopt SHARE_HISTORY            # Share history between sessions
 
+# Basic autosuggestions (requires zsh-autosuggestions package)
+if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+# Basic syntax highlighting (requires zsh-syntax-highlighting package)
+if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
+
+# Useful aliases
+alias ls='ls --color=auto'
+alias ll='ls -lah'
+alias grep='grep --color=auto'
+
+# Prompt customisation
+PROMPT='%F{cyan}%~%f %# '

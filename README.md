@@ -1,21 +1,87 @@
-# .zshrc
+# Simple Zsh Configuration
 
-This repo maintains a zsh configuration that customizes the shell's behavior and appearance. It sets up the prompt, enables version control system (VCS) information, configures history and completion, and defines aliases.
+A lightweight and efficient Zsh configuration without Oh My Zsh dependencies. This configuration provides advanced autocompletion, syntax highlighting, and useful defaults while maintaining speed and simplicity.
 
-![image](assets/screenshot.png)
+## Features
 
-Here's a brief breakdown:
+- Advanced autocompletion with menu selection
+- Case-insensitive completion
+- Syntax highlighting
+- Command suggestions
+- History management
+- Directory stack navigation
+- Sensible key bindings
+- Custom aliases
 
-1. **Prompt setup**: Sets the prompt to display the current directory, and enables prompt substitution to display VCS information.
+## Prerequisites
 
-2. **VCS information**: Enables VCS information display, formats the message, and sets up styles for different VCS states (e.g., merge, rebase).
+- Zsh shell
+- Git
+- Package manager (apt, dnf, pacman, or brew)
 
-3. **History and completion**: Configures history to ignore duplicates, shares history between sessions, and sets up completion with various styles and options.
+## Installation
 
-4. **Keybindings and editor**: Sets emacs keybindings and allows using emacs even if the EDITOR variable is set to vi.
+1. Clone the repository:
+```bash
+git clone https://github.com/mtt-merz/simple-zsh.git ~/.simple-zsh
+cd ~/.simple-zsh
+```
 
-5. **Aliases**: Defines aliases.
+2. Run the installation script:
+```bash
+./install.sh
+```
 
-6. **Autosuggestions**: Sources the zsh-autosuggestions plugin and sets the strategy to use both history and completion for suggestions.
+The script will:
+- Backup your existing ~/.zshrc if present
+- Install required dependencies
+- Create symbolic links
+- Set Zsh as your default shell (optional)
 
-Overall, this configuration aims to enhance the zsh user experience with a customized prompt, VCS information, and improved completion and history management.
+## Manual Installation
+
+If you prefer to install manually:
+
+1. Install required packages:
+   - For Ubuntu/Debian:
+     ```bash
+     sudo apt install zsh zsh-autosuggestions zsh-syntax-highlighting
+     ```
+   - For Fedora:
+     ```bash
+     sudo dnf install zsh zsh-autosuggestions zsh-syntax-highlighting
+     ```
+   - For Arch Linux:
+     ```bash
+     sudo pacman -S zsh zsh-autosuggestions zsh-syntax-highlighting
+     ```
+   - For macOS:
+     ```bash
+     brew install zsh zsh-autosuggestions zsh-syntax-highlighting
+     ```
+
+2. Copy the configuration files:
+   ```bash
+   cp zshrc ~/.zshrc
+   ```
+
+## Customization
+
+- Edit `~/.zshrc` directly for personal customizations
+- Add your custom aliases to `~/.zsh_aliases` if the file exists
+- Add machine-specific configurations to `~/.zsh_local` if the file exists
+
+## Uninstallation
+
+Run the uninstallation script:
+```bash
+./uninstall.sh
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT License - See LICENSE file for details
