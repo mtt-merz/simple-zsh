@@ -29,12 +29,6 @@ echo "The configuration has been downloaded and set up successfully."
 echo "Sourcing the new configuration"
 source "$HOME/.zshrc"
 
-# Create .zsh_local if it doesn't exist
-echo "Creating .zsh_local if it doesn't exist"
-if [ ! -f "$HOME/.zsh_local" ]; then
-    touch "$HOME/.zsh_local"
-fi
-
 # Download and source zsh-autosuggestions
 echo "Downloading and sourcing zsh-autosuggestions"
 if [ ! -d ~/.zsh/zsh-autosuggestions ]; then
@@ -55,5 +49,4 @@ echo "Please restart your terminal for the changes to take effect."
 
 echo "${NEW_LINE}To further customize your shell, you can:
 - Edit your ~/.zshrc directly to change the default settings
-- Add your custom aliases to ~/.zsh_aliases to keep them organized
-- Add machine-specific configurations to ~/.zsh_local to keep them separate"
+- Add your custom aliases to ~/.zsh_aliases to keep them organized"

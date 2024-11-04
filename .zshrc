@@ -42,27 +42,28 @@ zstyle ':completion:*' group-name ''
 zstyle ':completion:*:*:-command-:*:*' group-order alias builtins functions commands
 
 # Better directory stack navigation
-setopt AUTO_PUSHD           # Push directories to stack automatically
-setopt PUSHD_IGNORE_DUPS    # Don't push duplicates
-setopt PUSHD_SILENT         # Don't print directory stack
+setopt AUTO_PUSHD        # Push directories to stack automatically
+setopt PUSHD_IGNORE_DUPS # Don't push duplicates
+setopt PUSHD_SILENT      # Don't print directory stack
 
 # Better history
-setopt EXTENDED_HISTORY         # Write timestamp to history
-setopt HIST_EXPIRE_DUPS_FIRST   # Expire duplicate entries first
-setopt HIST_IGNORE_DUPS         # Don't record duplicates
-setopt HIST_IGNORE_SPACE        # Don't record entries starting with space
-setopt HIST_VERIFY              # Show command before executing from history
-setopt SHARE_HISTORY            # Share history between sessions
+setopt EXTENDED_HISTORY       # Write timestamp to history
+setopt HIST_EXPIRE_DUPS_FIRST # Expire duplicate entries first
+setopt HIST_IGNORE_DUPS       # Don't record duplicates
+setopt HIST_IGNORE_SPACE      # Don't record entries starting with space
+setopt HIST_VERIFY            # Show command before executing from history
+setopt SHARE_HISTORY          # Share history between sessions
 
 # Basic autosuggestions (requires zsh-autosuggestions package)
-if [ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+[[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
     source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-fi
 
 # Basic syntax highlighting (requires zsh-syntax-highlighting package)
-if [ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+[[ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] &&
     source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-fi
+
+# Load aliases
+[[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
 
 # Prompt customisation
 PROMPT='%F{cyan}%~%f %# '
