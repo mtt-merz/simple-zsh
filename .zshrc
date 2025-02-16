@@ -54,6 +54,14 @@ setopt HIST_IGNORE_SPACE      # Don't record entries starting with space
 setopt HIST_VERIFY            # Show command before executing from history
 setopt SHARE_HISTORY          # Share history between sessions
 
+# Search in history when using arrow keys up and down
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search # Up arrow
+bindkey "^[[B" down-line-or-beginning-search # Down arrow
+
 # Basic autosuggestions (requires zsh-autosuggestions package)
 [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
     source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
