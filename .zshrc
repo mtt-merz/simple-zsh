@@ -66,4 +66,4 @@ setopt SHARE_HISTORY          # Share history between sessions
 [[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
 
 # Prompt customisation
-PROMPT='%F{cyan}%~%f %# '
+PROMPT=$'\n''%F{cyan}%~%f'$'\n> '
